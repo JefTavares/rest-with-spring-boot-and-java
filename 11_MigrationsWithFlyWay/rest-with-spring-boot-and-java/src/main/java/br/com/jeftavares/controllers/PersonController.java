@@ -19,7 +19,7 @@ import br.com.jeftavares.data.vo.v2.PersonVOV2;
 import br.com.jeftavares.services.PersonServices;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 
 	@Autowired
@@ -42,6 +42,11 @@ public class PersonController {
 		return service.create(person);
 	}
 	
+	/* Só para lembrar que o RequestMapping da classe controller está:
+	 * api/person/v1 assim essa rota não vai funcionar já que ela assume
+	 * a rota mais padrão person/ e completa o value = "/2"
+	 * mas está ai para lembrar de versionamento
+	 * */
 	@PostMapping(value = "/v2", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public PersonVOV2 createV2(@RequestBody PersonVOV2 person) {
